@@ -53,6 +53,23 @@ class Singly_Linked_Lists:
         # update the new node's val to existing node
         new_node.nextval = self.headval
         self.headval = new_node
+    
+    # for demonstrating creating a new node and inserting at end of list
+    def AtEnd(self, newdata):
+        # create a new Node(newdata) with the given input data and store it in a variable
+        new_node = Node(newdata)
+        # check length of node linked list, if it is empty, assign the node to the head of list
+        if self.headval is None:
+            self.headval = new_node
+            return 
+        # find the head(start) of linked list and store it in a variable (i.e. laste)
+        laste = self.headval
+        # while there is a NEXT node beyond the head node...
+        while (laste.nextval):
+            # reassign the next node to laste variable...
+            laste = laste.nextval
+        # if there is NOT a next value in the linked list, assign the nextval node(end node, null node) to be the value of the newdata 
+        laste.nextval = new_node
 
 # Set up initial nodes
 list1 = Singly_Linked_Lists()
@@ -75,5 +92,14 @@ list1.listprint( )
 # Inserting at the Beginning - when inserting at the beginning of a Linked List, you want to reassign the nextval pointer to the current headval and reassigning the headval pointer to the new node being inserted.
 list1.AtBeginning('Sunday')
 
-# print with new day added.
+# print with new day added at beginning.
 list1.listprint()
+
+# Inserting at the END - This involves pointing the next pointer of the the current last node of the linked list to the new data node. So the current last node of the linked list becomes the second last data node and the new node becomes the last node of the linked list.
+list1.AtEnd('Thursday')  # insert this between Wednesday and Friday when doing insertion between 2 nodes of list.
+list1.AtEnd('Friday')
+list1.AtEnd('Saturday')
+
+# print with new day added at end.
+list1.listprint()
+
